@@ -88,14 +88,22 @@ function deleteUser(delIdx)
 
 // global variable
 
+var filteredUsers = []; // For filtered search results
+var isSearching = false; // To track whether the user is in search mode
 var upIndex = -1; // This will store the index to update
-var filteredUsers = []; // To hold filtered users during search
+
 
 // set form for update function
 
-function setFormUpdate(updatedIdx)
-{
-    upIndex = updatedIdx; // Store the original index for updating
+function setFormUpdate(updatedIdx) {
+    // Check if user is searching and map the index accordingly
+    if (isSearching) {
+        let originalIndex = userContainer.indexOf(filteredUsers[updatedIdx]);
+        upIndex = originalIndex;
+    } else {
+        upIndex = updatedIdx;
+    }
+
     addBtn.classList.add('d-none');
     addBtn2.classList.remove('d-none');
 
@@ -114,7 +122,7 @@ function updateUser()
         userContainer[upIndex].badge = userBadge.value;
 
         localStorage.setItem("User", JSON.stringify(userContainer));
-        displayUsers(userContainer);
+        displayUsers(isSearching ? filteredUsers : userContainer); // Display correct list
         addBtn2.classList.add('d-none');
         addBtn.classList.remove('d-none');
         clearForm();
@@ -125,20 +133,13 @@ function updateUser()
 function searchUser() {
     var searchValue = search.value.toLowerCase();
     filteredUsers = userContainer.filter(user => user.names.toLowerCase().includes(searchValue));
+
+    // Update display and set search mode
     displayUsers(filteredUsers);
+    isSearching = searchValue.length > 0;
 }
 
-// Update function for filtered users
-function setFormUpdate(updatedIdx) {
-    let originalIndex = userContainer.indexOf(filteredUsers[updatedIdx]);
-    upIndex = originalIndex; // Map to the original index
-    addBtn.classList.add('d-none');
-    addBtn2.classList.remove('d-none');
 
-    userName.value = userContainer[upIndex].names;
-    userState.value = userContainer[upIndex].stats;
-    userBadge.value = userContainer[upIndex].badge;
-}
 
 
 // Disable inspect element
