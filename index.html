@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Assistant</title>
+    <link rel="shortcut icon" href="images/photo_2024-06-29_02-24-49.jpg" type="image/x-icon">
+    <!-- Bootstrap.min.css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- icon.css -->
+    <link rel="stylesheet" href="css/all.min.css"/>
+    <!-- main.css -->
+    <link rel="stylesheet" href="css/style.css"/>  
+    <!-- media.css -->
+    <link rel="stylesheet" href="css/media.css"/>
+</head>
+<body oncontextmenu="return false">
+    
+    <img src="images/photo_2024-06-29_02-24-49.jpg" alt="my_logo">
+
+    <section>
+        <div class="container">
+            <h2 class="w-50 mb-5 mt-2"> <i class="fas fa-clipboard-check"></i> Organizer Assistant </h2>
+            
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control mt-5" id="addName" placeholder="i want to do ...">
+                <label for="addName">Student Name</label>
+              </div>
+
+              <h5>Choose the state </h5>
+              <div class="form-floating mb-3">
+                <select name="stats" id="addState">
+                <label for="stats">Choose a status:</label>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Notset">Notset</option>
+                </select>
+              </div>
+
+              <h5>Choose the Badge </h5>
+              <div class="form-floating mb-3">
+                <select name="badges" id="addBadge">
+                    <label for="stats">Choose a badge:</label>
+                    <option value="Gold">Gold</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Bronze">Bronze</option>
+                    <option value="Notset">Notset</option>
+                </select>
+              </div>
+
+              <button id="addBtn" class="mb-5 mt-5">add</button>
+              <button id="addBtn2" class="d-none mb-5 mt-5">update</button>
+
+              <input type="text" oninput="searchUser()" class="form-control mb-5 my-3 m-auto w-75" id="ProductSearch" placeholder="Search For Student">
+
+
+        </div>
+    </section>
+
+
+
+    <section>
+        <div class="container">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Number</td>
+                        <td>Name</td>
+                        <td>Status</td>
+                        <td>Badge</td>
+                        <td>Update</td>
+                        <td>Delete</td>
+                    </tr>
+                </tbody>
+
+                <tbody id="tabBody" >
+                    <tr >
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <!-- index.js -->
+<script src="js/index.js"></script>
+</body>
+</html>
