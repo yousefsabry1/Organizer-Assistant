@@ -76,11 +76,18 @@ function clearForm()
 
 // ===========>> Delete Function
 
-function deleteUser(delIdx)
-{
-    userContainer.splice(delIdx , 1);
-    displayUsers(userContainer);
-    localStorage.setItem("User" , JSON.stringify(userContainer));
+function deleteUser(delIdx) {
+    if (isSearching) {
+        // Find the corresponding index in the original userContainer
+        let originalIndex = userContainer.indexOf(filteredUsers[delIdx]);
+        userContainer.splice(originalIndex, 1); // Delete from original list
+        filteredUsers.splice(delIdx, 1); // Remove from the filtered list as well
+    } else {
+        userContainer.splice(delIdx, 1);
+    }
+
+    localStorage.setItem("User", JSON.stringify(userContainer));
+    displayUsers(isSearching ? filteredUsers : userContainer); // Display correct list
 }
 
 
