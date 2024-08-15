@@ -1,6 +1,7 @@
 var userName = document.getElementById("addName");
 var userState = document.getElementById("addState");
 var userBadge = document.getElementById("addBadge");
+var userGroup = document.getElementById("addGroup");
 var search = document.getElementById('ProductSearch');
 
 var tableBody = document.getElementById('tabBody');
@@ -34,7 +35,8 @@ function addUser()
    var User = {
     names : userName.value ,
     stats : userState.value ,
-    badge : userBadge.value
+    badge : userBadge.value ,
+    group : userGroup.value 
    };
 
    userContainer.push(User);
@@ -55,6 +57,7 @@ function displayUsers(arr)
                         <tr>
                             <td>${i + 1}</td>
                             <td>${arr[i].names}</td>
+                            <td>${arr[i].group}</td>
                             <td>${arr[i].stats}</td>
                             <td>${arr[i].badge}</td>
                             <td><button onclick="setFormUpdate(${i})" id="updateBtn">update</button></td>
@@ -72,6 +75,7 @@ function clearForm()
     userName.value = null ;
     userState.value = null ;
     userBadge.value = null ;
+    userGroup.value = null ;
 }
 
 // ===========>> Delete Function
@@ -117,6 +121,7 @@ function setFormUpdate(updatedIdx) {
     userName.value = userContainer[upIndex].names;
     userState.value = userContainer[upIndex].stats;
     userBadge.value = userContainer[upIndex].badge;
+    userGroup.value = userContainer[upIndex].group;
 }
 
 // update function
@@ -127,6 +132,7 @@ function updateUser()
         userContainer[upIndex].names = userName.value;
         userContainer[upIndex].stats = userState.value;
         userContainer[upIndex].badge = userBadge.value;
+        userContainer[upIndex].group = userGroup.value;
 
         localStorage.setItem("User", JSON.stringify(userContainer));
         displayUsers(isSearching ? filteredUsers : userContainer); // Display correct list
